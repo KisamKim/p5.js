@@ -1,0 +1,32 @@
+PImage img;
+
+void setup() {
+  size(1280, 720);
+  img = loadImage("rainyday.jpg");
+  imageMode (CENTER);
+  noStroke();
+  background(img);
+}
+
+void draw() {
+  //water drop
+  float size = random(3, 50);
+  int x = int(random(img.width));
+  int y = int(random(img.height));
+  color pix = img.get(x, y);
+  fill(pix, 100);
+  ellipse(x, y, size, size);
+
+  //breath
+  if (mousePressed &&(mouseButton == RIGHT)) {
+    float bs = random(100, 200);
+    fill(255,50);
+    ellipse(mouseX+random(-150,150), mouseY+random(-150,150), bs, bs);
+  }
+  //drawing
+  else if (mousePressed &&(mouseButton == LEFT)) {
+    color c = img.get(mouseX,mouseY);
+    fill(c, 120);
+    ellipse(mouseX,mouseY,30,50);
+  }
+}
